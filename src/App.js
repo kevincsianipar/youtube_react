@@ -5,10 +5,11 @@ import YTSearch from 'youtube-api-search';
 
 //search bar
 import SearchBar from './components/searchBar/SearchBar';
-import './components/searchBar/SearchBar.css';
+//import './components/searchBar/SearchBar.css';
 
 import VideoList from './components/videoList/VideoList'
-import './components/videoList/VideoList.css';
+// import './components/videoList/VideoList.css';
+import './components/sass/main.scss';
 
 const API_KEY = 'AIzaSyARpNovs7cj_dPnplGjEbvYU6i3WUNPb_8';
 
