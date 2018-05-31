@@ -14,7 +14,7 @@ class SearchBar extends Component{
                 <form className="form-wrapper-2 cf">
                     <input
                         value={this.state.searchTerm} 
-                        onChange={event => this.setState({ searchTerm: event.target.value })} type="text" placeholder="Search here..." required>
+                        onChange={event => this.onInputChange(event.target.value)} type="text" placeholder="Search here..." required>
                     </input>
                     <button
                         type="submit">Search
@@ -24,8 +24,9 @@ class SearchBar extends Component{
         );
     }
 
-    onInputChange(event){
-        
+    onInputChange(searchTerm){
+        this.setState({searchTerm});
+        this.props.onSearchTermChange(searchTerm);
     }
 
     onClickEvent(event){

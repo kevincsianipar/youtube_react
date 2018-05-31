@@ -1,7 +1,10 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import YTSearch from 'youtube-api-search';
+
+//import 'antd/dist/antd.css';
 
 //search bar
 import SearchBar from './components/searchBar/SearchBar';
@@ -22,7 +25,11 @@ class App extends Component {
       selectedVideo:null
     };
 
-    YTSearch({key: API_KEY, term: 'surfboards'}, (videos) =>{
+    this.videoSearch('');
+  }
+
+  videoSearch(term){
+    YTSearch({key: API_KEY, term: term}, (videos) =>{
       this.setState({ 
         videos: videos,
         selectedVideo: videos[0] 
@@ -32,11 +39,13 @@ class App extends Component {
   }
 
   render() {
+    const videoSearch = _.debounce((term) => { this.videoSearch(term) }, 400); //throttling search
+
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <SearchBar />
+          <SearchBar onSearchTermChange={videoSearch} />
         </header>
         <body className="App-body">
           <VideoDetail video = {this.state.selectedVideo}/>
